@@ -103,7 +103,7 @@
     width: 50vw;  /* Half of the page width */
     height: 50vh; /* Half of the page height */
     background-color: #4EA685;  /* Green color */
-    border-radius: 0 0 50% 0;  /* Makes the bottom-left corner a half-circle */
+    border-radius:  40% 0 70% 0;;  /* Makes the bottom-left corner a half-circle */
     z-index: 1;  /* Ensure it appears above the content */
 }
   </style>

@@ -3,14 +3,14 @@
         <div class="half-radius-corner">
             <div class="auth-container">
             <h2>Login</h2>
-            <form @submit.prevent="submitLogin">
+            <form  method="post">
                 <div class="input-group">
-                <input v-model="username" type="text" placeholder="Username" required />
+                <input v-model="email" type="text" placeholder="email" required />
                 </div>
                 <div class="input-group">
                 <input v-model="password" type="password" placeholder="Password" required />
                 </div>
-                <button type="submit">Login</button>
+                <button type="button" @click="login">Login</button>
             </form>
             <p>Don't have an account? <router-link to="/register">Register here</router-link></p>
             </div>
@@ -18,22 +18,71 @@
   </template>
   
   <script>
+
+
+import DataService from "../services/DataService";
+    import router from '@/router';
   export default {
+    name: "login",
     data() {
       return {
-        username: '',
-        password: '',
+        formData: {
+          email: "",
+          password: "",
+        },
       };
     },
     methods: {
-      submitLogin() {
-        // Handle login logic (e.g., API request)
-        console.log('Login attempt:', this.username, this.password);
-        // Redirect or show success message
-        this.$router.push('/home'); // Example of redirecting after login
-      },
+      login() {
+        var data = {
+          email: this.formData.email,
+          password: this.formData.password
+        };
+        DataService.login(data)
+        .then(response => {
+          console.log(response.data.data.token)
+          if(response.data.data.token)
+            sessionStorage.setItem('uid', response.data.data.token);
+          else
+            alert(response.data.error)
+            
+            router.push({ name: 'home' });
+            window.location.href='/home';
+        })
+        .catch(e => {
+          console.log(e);
+        });
+      }
     },
   };
+
+
+
+
+
+
+
+
+
+
+    // import DataService from "../services/DataService";
+    // import router from '@/router';
+    // export default {
+    //   data() {
+    //     return {
+    //       email: '',
+    //       password: '',
+    //     };
+    //   },
+    //   methods: {
+    //     submitLogin() {
+    //       // Handle login logic (e.g., API request)
+    //       console.log('Login attempt:', this.username, this.password);
+    //       // Redirect or show success message
+    //       this.$router.push('/home'); // Example of redirecting after login
+    //     },
+    //   },
+    // };
   </script>
   
   <style scoped>
@@ -87,7 +136,7 @@
     width: 50vw;  /* Half of the page width */
     height: 50vh; /* Half of the page height */
     background-color: #4EA685;  /* Green color */
-    border-radius: 0 0 50% 0;  /* Makes the bottom-left corner a half-circle */
+    border-radius: 40% 0 70% 0;  /* Makes the bottom-left corner a half-circle */
     z-index: 1;  /* Ensure it appears above the content */
 }
   </style>
