@@ -41,9 +41,9 @@ class DataService {
 
 
 
-  findByTitle(title) {
-    return http.get(`/tutorials?title=${title}`);
-  }
+  // findByTitle(title) {
+  //   return http.get(`/tutorials?title=${title}`);
+  // }
 }
 
 export default new DataService();

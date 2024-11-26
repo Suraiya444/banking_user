@@ -5,10 +5,10 @@
             <h2>Login</h2>
             <form  method="post">
                 <div class="input-group">
-                <input v-model="email" type="text" placeholder="email" required />
+                <input v-model="formData.email" type="text" placeholder="email" required />
                 </div>
                 <div class="input-group">
-                <input v-model="password" type="password" placeholder="Password" required />
+                  <input type="password" v-model="formData.password" placeholder="Enter your password">
                 </div>
                 <button type="button" @click="login">Login</button>
             </form>
@@ -21,7 +21,7 @@
 
 
 import DataService from "../services/DataService";
-    import router from '@/router';
+  import router from '@/router';
   export default {
     name: "login",
     data() {
@@ -46,7 +46,7 @@ import DataService from "../services/DataService";
           else
             alert(response.data.error)
             
-            router.push({ name: 'home' });
+            router.push({ name: 'Home' });
             window.location.href='/home';
         })
         .catch(e => {
@@ -55,14 +55,6 @@ import DataService from "../services/DataService";
       }
     },
   };
-
-
-
-
-
-
-
-
 
 
     // import DataService from "../services/DataService";

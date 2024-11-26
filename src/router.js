@@ -4,7 +4,7 @@ const routes =  [
     {
       path: "/home",
       alias: "/home",
-      name: "home",
+      name: "Home",
       component: () => import("./components/Home")
     },
     {
