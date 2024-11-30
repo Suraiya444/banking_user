@@ -162,7 +162,7 @@
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                        <img src="img/product/pro4.jpg" alt="" />
+                                                        <img src="/img/product/pro4.jpg" alt="" />
                                                         <span class="admin-name">Account</span>
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                     </a>
@@ -664,11 +664,28 @@ export default {
   name: 'Header',
   data() {
     return {
-      front_access_token:localStorage.getItem('front_access_token'),d:"kkk"
+      uid: sessionStorage.getItem('uid'),
+      userName: JSON.parse(sessionStorage.getItem('customer'))
     };
   },
-  props: {
-    msg: String
+  watch: {
+    // Watch for changes in sessionStorage and update uid and userName
+    'uid': function (newVal) {
+      if (newVal) {
+        this.userName = JSON.parse(sessionStorage.getItem('customer'));
+      } else {
+        this.userName = null; // Reset userName when logged out
+      }
+    }
+  },
+  methods: {
+    logout() {
+      this.uid = "";  // Clear uid
+      this.userName = null;  // Clear userName
+      sessionStorage.removeItem('customer'); // Clear sessionStorage
+      sessionStorage.removeItem('customer'); // Clear sessionStorage
+      this.$router.push('/'); // Redirect to home or login page
+    }
   }
 }
 </script>

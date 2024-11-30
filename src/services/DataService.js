@@ -2,7 +2,10 @@ import http from "../http-common";
 
 class DataService {
   login(data) {
-    return http.post("/login", data);
+    return http.post("/customer/login", data);
+  }
+  customer(id) {
+    return http.get(`/customer/${id}`);
   }
   // orders(uid) {
   //   return http.get(`/orders/${uid}`);

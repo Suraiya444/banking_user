@@ -1,5 +1,5 @@
 <template>
-      <div class="single-pro-review-area mt-t-30 mg-b-15">
+      <div v-if="customer" class="single-pro-review-area mt-t-30 mg-b-15">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -11,7 +11,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                         <div class="address-hr">
-                                            <p><b>Name</b><br /> Fly Zend</p>
+                                            <p><b>{{customer.name }}</b><br /></p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
@@ -155,10 +155,21 @@
 <script>
 export default {
   name: 'Home',
-  props: {
-    msg: String
-  }
-}
+  data(){
+    return{
+        customer: JSON.parse(sessionStorage.getItem('customer'))||null,
+    };
+  },
+//   methods:{
+//     editProfile(){
+//         this.$router.push('/customer');
+//     },
+//   },
+
+//   props: {
+//     msg: String
+//   }
+};
 </script>
  
 
