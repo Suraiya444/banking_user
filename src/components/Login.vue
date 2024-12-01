@@ -41,13 +41,14 @@ import DataService from "../services/DataService";
         DataService.login(data)
         .then(response => {
           console.log(response.data.data.token)
-          if(response.data.data.token)
+          if (response.data.data.token) {
             sessionStorage.setItem('uid', response.data.data.token);
-          else
+            sessionStorage.setItem('customer', JSON.stringify(response.data.data.data));
+          } else
             alert(response.data.error)
             
-            router.push({ name: 'Home' });
-            window.location.href='/home';
+            router.push({ name: 'home' });
+            window.location.href='/';
         })
         .catch(e => {
           console.log(e);

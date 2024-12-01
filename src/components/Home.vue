@@ -11,7 +11,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                         <div class="address-hr">
-                                            <p><b>{{customer.name }}</b><br /></p>
+                                            <p><b>Name</b><br />  </p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
@@ -93,51 +93,14 @@
                                                     <tbody>
                                                         <tr> 
                                                             <td>1</td>
-                                                            <td>Web Development</td>
-                                                            <td>admin@uttara.com</td>
-                                                            <td>+8801962067309</td>
-                                                            <td class="datatable-ct"><span class="pie">1/6</span>
+                                                            <td>{{ user.name }}</td>
+                                                            <td>{{ user.account_no }}</td>
+                                                            <td>{{ user.amount }}</td>
+                                                            <td class="datatable-ct"><span class="pie">{{ user.trans_type }}</span>
                                                             </td>
-                                                            <td>10%</td>
-                                                            <td>Jul 14, 2017</td>
-                                                             
+                                                            <td>{{ user.trans_type }}</td>
+                                                            <td>{{ user.trans_type }}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>2</td>
-                                                            <td>Graphic Design</td>
-                                                            <td>fox@itpark.com</td>
-                                                            <td>+8801762067304</td>
-                                                            <td class="datatable-ct"><span class="pie">230/360</span>
-                                                            </td>
-                                                            <td>70%</td>
-                                                            
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>3</td>
-                                                            <td>Software Development</td>
-                                                            <td>gumre@hash.com</td>
-                                                            <td>+8801862067308</td>
-                                                            <td class="datatable-ct"><span class="pie">0.42/1.461</span>
-                                                            </td>
-                                                            <td>5%</td>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>4</td>
-                                                            <td>Woocommerce</td>
-                                                            <td>kyum@frok.com</td>
-                                                            <td>+8801962066547</td>
-                                                            <td class="datatable-ct"><span class="pie">2,7</span>
-                                                            </td>
-                                                            <td>15%</td>
-                                                            
-                                                        </tr>
-                                                        
-                                                        
                                                       
                                                     </tbody>
                                                 </table>
@@ -153,22 +116,19 @@
         </div>
 </template>
 <script>
-export default {
-  name: 'Home',
-  data(){
-    return{
-        customer: JSON.parse(sessionStorage.getItem('customer'))||null,
-    };
-  },
-//   methods:{
-//     editProfile(){
-//         this.$router.push('/customer');
-//     },
-//   },
+// import DataService from "../services/DataService";
+// import router from '@/router';
 
-//   props: {
-//     msg: String
-//   }
+export default {
+    name: 'Home',
+    data() {
+        console.log(JSON.parse(sessionStorage.getItem('udata')))
+        return {
+            user: JSON.parse(sessionStorage.getItem('udata')),
+            isEditing: false
+        };
+    },
+    
 };
 </script>
  

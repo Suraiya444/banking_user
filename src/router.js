@@ -14,6 +14,12 @@ const routes =  [
       component: () => import("./components/Deposit")
     },
     {
+      path: "/transaction",
+      alias: "/transaction",
+      name: "Transaction",
+      component: () => import("./components/Transaction")
+    },
+    {
       path: "/login",
       alias: "/login",
       name: "login",

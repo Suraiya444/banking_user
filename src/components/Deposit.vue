@@ -20,23 +20,13 @@
                                                                 <input name="name" type="text" class="form-control" placeholder="Name">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input name="headofdepartment" type="text" class="form-control" placeholder="Head of Department">
+                                                                <input name="account_no" type="text" class="form-control" placeholder="Account No">
                                                             </div>
                                                             <div class="form-group">
-                                                                <input name="email" type="email" class="form-control" placeholder="Email">
+                                                                <input name="amount" type="email" class="form-control" placeholder="Amount">
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                            <div class="form-group">
-                                                                <input name="phone" type="number" class="form-control" placeholder="Phone">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input name="noofstudent" type="number" class="form-control" placeholder="No. of Students">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input name="status" type="text" class="form-control" placeholder="Status">
-                                                            </div>
-                                                        </div>
+                                                         
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-12">
