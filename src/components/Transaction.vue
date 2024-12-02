@@ -1,49 +1,103 @@
 <template>
-    <div class="static-table-area">
+    <div class="single-pro-review-area mt-t-30 mg-b-15">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
-                        <div class="sparkline8-list">
-                            <div class="sparkline8-hd">
-                                <div class="main-sparkline8-hd">
-                                    <h1>Transaction History</h1>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <ul id="myTabedu1" class="tab-review-design">
+                                <li class="active"><a href="#description">Transaction</a></li>
+                                
+                            </ul>
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <form id="add-department" action="#" class="add-department">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <input name="name" type="text" class="form-control" placeholder="Name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="amount" type="email" class="form-control" placeholder="Amount">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="trans_date" type="date" class="form-control" placeholder="Amount">
+                                                            </div>
+                                                        </div>
+                                                         
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="payment-adress">
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="sparkline8-graph">
-                                <div class="static-table-list">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>SL</th>
-                                                <th>Transaction Code</th>
-                                                <th>Account No</th>
-                                                <th>Transaction Type</th>
-                                                <th>Amount</th>
-                                                <th>Date</th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>n,mn,mn</td>
-                                                <td>nnnmnb</td>
-                                                <td>jhkhk</td>
-                                                <td>kjhjhkh</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Suhag</td>
-                                                <td>Khan</td>
-                                                <td>@Twitter</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="product-tab-list tab-pane fade" id="reviews">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="devit-card-custom">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" placeholder="Email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="number" class="form-control" placeholder="Phone">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" class="form-control" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="password" class="form-control" placeholder="Confirm Password">
+                                                            </div>
+                                                            <a href="#!" class="btn btn-primary waves-effect waves-light">Submit</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-tab-list tab-pane fade" id="INFORMATION">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+												<div class="row">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<div class="devit-card-custom">
+															<div class="form-group">
+																<input type="url" class="form-control" placeholder="Facebook URL">
+															</div>
+															<div class="form-group">
+																<input type="url" class="form-control" placeholder="Twitter URL">
+															</div>
+															<div class="form-group">
+																<input type="url" class="form-control" placeholder="Google Plus">
+															</div>
+															<div class="form-group">
+																<input type="url" class="form-control" placeholder="Linkedin URL">
+															</div>
+															<button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+														</div>
+													</div>
+												</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>                  
-                </div>              
+                    </div>
+                </div>
             </div>
         </div>
 </template>

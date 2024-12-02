@@ -1,62 +1,61 @@
  <!-- src/components/Login.vue -->
-<template>
-        <div class="half-radius-corner">
-            <div class="auth-container">
-            <h2>Login</h2>
-            <form  method="post">
-                <div class="input-group">
-                <input v-model="formData.email" type="text" placeholder="email" required />
-                </div>
-                <div class="input-group">
-                  <input type="password" v-model="formData.password" placeholder="Enter your password">
-                </div>
-                <button type="button" @click="login">Login</button>
-            </form>
-            <p>Don't have an account? <router-link to="/register">Register here</router-link></p>
-            </div>
-        </div>
-  </template>
-  
-  <script>
+ <template>
+  <div class="half-radius-corner">
+      <div class="auth-container">
+      <h2>Login</h2>
+      <form  method="post">
+          <div class="input-group">
+          <input v-model="formData.email" type="text" placeholder="email" required />
+          </div>
+          <div class="input-group">
+            <input type="password" v-model="formData.password" placeholder="Enter your password">
+          </div>
+          <button type="button" @click="login">Login</button>
+      </form>
+      <p>Don't have an account? <router-link to="/register">Register here</router-link></p>
+      </div>
+  </div>
+</template>
+
+<script>
 
 
 import DataService from "../services/DataService";
-  import router from '@/router';
-  export default {
-    name: "login",
-    data() {
-      return {
-        formData: {
-          email: "",
-          password: "",
-        },
-      };
-    },
-    methods: {
-      login() {
-        var data = {
-          email: this.formData.email,
-          password: this.formData.password
-        };
-        DataService.login(data)
-        .then(response => {
-          console.log(response.data.data.token)
-          if (response.data.data.token) {
-            sessionStorage.setItem('uid', response.data.data.token);
-            sessionStorage.setItem('customer', JSON.stringify(response.data.data.data));
-          } else
-            alert(response.data.error)
-            
-            router.push({ name: 'home' });
-            window.location.href='/';
-        })
-        .catch(e => {
-          console.log(e);
-        });
-      }
-    },
+import router from '@/router';
+export default {
+name: "login",
+data() {
+return {
+  formData: {
+    email: "",
+    password: "",
+  },
+};
+},
+methods: {
+login() {
+  var data = {
+    email: this.formData.email,
+    password: this.formData.password
   };
-
+  DataService.login(data)
+  .then(response => {
+    console.log(response.data.data.token)
+    if(response.data.data.token){
+      sessionStorage.setItem('uid', response.data.data.token);
+      sessionStorage.setItem('udata', JSON.stringify(response.data.data.data));
+    }else
+      alert(response.data.error)
+      
+      router.push({ name: 'Home' });
+      window.location.href='/home';
+  })
+  .catch(e => {
+    console.log(e);
+  });
+}
+},
+};
 
     // import DataService from "../services/DataService";
     // import router from '@/router';

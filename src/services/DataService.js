@@ -5,10 +5,16 @@ class DataService {
     return http.post("/customer/login/", data);
   }
   customer(id) {
-    return http.get(`/customer_account/${id}`);
+    return http.get(`/customer/${id}`);
   }
-  transaction(id) {
-    return http.get(`/customer_transaction/${id}`);
+  accountType(id) {
+    return http.get(`/account_type/${id}`);
+  }
+  ustomerAccount(id) {
+    return http.get(`/customer_account/${id}`);   
+  }
+  transaction(user_id) {
+    return http.get(`/customer_transaction?customer_id=${user_id}`);
   }
   
   // orders(uid) {

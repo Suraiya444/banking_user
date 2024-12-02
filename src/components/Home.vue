@@ -1,5 +1,5 @@
 <template>
-      <div v-if="customer" class="single-pro-review-area mt-t-30 mg-b-15">
+      <div  class="single-pro-review-area mt-t-30 mg-b-15">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -11,31 +11,31 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                         <div class="address-hr">
-                                            <p><b>Name</b><br />  </p>
+                                            <p><b>Name</b><br />{{ user.name }}</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                         <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                            <p><b>Account</b><br /> Head of Dept.</p>
+                                            <p><b>Gender</b><br />{{user.gender}}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                         <div class="address-hr">
-                                            <p><b>Email ID</b><br /> fly@gmail.com</p>
+                                            <p><b>Email ID</b><br /> {{user.email}}</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                         <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                            <p><b>Phone</b><br /> +01962067309</p>
+                                            <p><b>Phone</b><br />{{user.contact_no}}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="address-hr">
-                                            <p><b>Address</b><br /> E104, catn-2, Chandlodia Ahmedabad Gujarat, UK.</p>
+                                            <p><b>Address</b><br />{{user.pre_address }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                     <div class="sparkline13-list">
                                         <div class="sparkline13-hd">
                                             <div class="main-sparkline13-hd">
-                                                <h1>Customer<span class="table-project-n">Data</span></h1>
+                                                <h1>{{user.name}}'s<span class="table-project-n"> Account Details</span></h1>
                                             </div>
                                         </div>
                                         <div class="sparkline13-graph">
@@ -81,25 +81,24 @@
                                                         <tr>
                                                             
                                                             <th data-field="id">ID</th>
-                                                            <th data-field="name" data-editable="true">Name</th>
                                                             <th data-field="email" data-editable="true">Ac Number</th>
                                                             <th data-field="phone" data-editable="true">Balance</th>
-                                                            <th data-field="complete">Transfer</th>
-                                                            <th data-field="task" data-editable="true">Deposit</th>
-                                                            <th data-field="date" data-editable="true">Withdraw</th>
-                                                             
+                                                            <th data-field="complete">Transaction Type</th>
+                                                            <th data-field="task" data-editable="true">Transaction Date</th>                                                          
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr> 
+                                                        <tr v-for="t in transaction" :key="t.id"> 
                                                             <td>1</td>
-                                                            <td>{{ user.name }}</td>
-                                                            <td>{{ user.account_no }}</td>
-                                                            <td>{{ user.amount }}</td>
-                                                            <td class="datatable-ct"><span class="pie">{{ user.trans_type }}</span>
+                                                            <td> {{ t.customer_account?.account_no }}</td>
+                                                            <td> {{ t.amount }}</td>
+                                                            <td> {{ t.trans_type }}</td>
+                                                            <td> {{ t.trans_date }}</td>
+                                                            <!-- <td>{{ customeraccount.customer_account?.account_no }}</td>
+                                                            <td class="datatable-ct"><span class="pie">{{ customeraccount.customer_account?.account_no }}</span>
                                                             </td>
-                                                            <td>{{ user.trans_type }}</td>
-                                                            <td>{{ user.trans_type }}</td>
+                                                            <td>{{ customeraccount.customer_account?.account_no }}</td>
+                                                            <td>{{ customeraccount.customer_account?.account_no }}</td> -->
                                                         </tr>
                                                       
                                                     </tbody>
@@ -116,18 +115,48 @@
         </div>
 </template>
 <script>
-// import DataService from "../services/DataService";
+import DataService from "../services/DataService";
 // import router from '@/router';
 
 export default {
     name: 'Home',
     data() {
-        console.log(JSON.parse(sessionStorage.getItem('udata')))
+        console.log(JSON.parse(sessionStorage.getItem('udata')));
         return {
             user: JSON.parse(sessionStorage.getItem('udata')),
-            isEditing: false
+            transaction:[],
+            
         };
     },
+
+    mounted() {
+    this.customerTransactionDetails();     
+  },
+     
+    methods: {
+        async customerTransactionDetails() {
+    try {      
+      const user_id = this.user ? this.user.id : null;     
+      if (!user_id) {
+        console.error("No user ID found.");
+        return;  
+      }    
+      const response = await DataService.transaction(user_id);  
+      const data = response.data.data;  
+
+      if (data) {
+        this.transaction = data; // Store the customer account data in the component state
+        console.log("Customer Transaction Data:", data);
+      } else {
+        console.error('Failed to load customer account data');
+      }
+    } catch (error) {
+      console.error("Error fetching customer account:", error);
+    }
+  }
+
+    }
+  
     
 };
 </script>
