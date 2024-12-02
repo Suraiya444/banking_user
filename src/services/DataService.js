@@ -16,6 +16,9 @@ class DataService {
   transaction(user_id) {
     return http.get(`/customer_transaction?customer_id=${user_id}`);
   }
+  customerTransaction(data) {
+    return http.post(`/customer_transaction/`,data);
+  }
   
   // orders(uid) {
   //   return http.get(`/orders/${uid}`);
