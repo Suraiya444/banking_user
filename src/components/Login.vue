@@ -19,62 +19,133 @@
 
 <script>
 
+// import DataService from "../services/DataService";
+// import router from "@/router";  // Ensure router is imported
 
-import DataService from "../services/DataService";
-import router from '@/router';
-export default {
-name: "login",
-data() {
-return {
-  formData: {
-    email: "",
-    password: "",
-  },
-};
-},
-methods: {
-login() {
-  var data = {
-    email: this.formData.email,
-    password: this.formData.password
-  };
-  DataService.login(data)
-  .then(response => {
-    console.log(response.data.data.token)
-    if(response.data.data.token){
-      sessionStorage.setItem('uid', response.data.data.token);
-      sessionStorage.setItem('udata', JSON.stringify(response.data.data.data));
-    }else
-      alert(response.data.error)
-      
-      router.push({ name: 'Home' });
-      window.location.href='/home';
-  })
-  .catch(e => {
-    console.log(e);
-  });
-}
-},
-};
+// export default {
+//   name: "login",
+//   data() {
+//     return {
+//       formData: {
+//         email: "",
+//         password: "",
+//       },
+//     };
+//   },
+//   methods: {
+//     async login() {
+//       const data = {
+//         email: this.formData.email,
+//         password: this.formData.password
+//       };
 
-    // import DataService from "../services/DataService";
-    // import router from '@/router';
-    // export default {
-    //   data() {
-    //     return {
-    //       email: '',
-    //       password: '',
-    //     };
-    //   },
-    //   methods: {
-    //     submitLogin() {
-    //       // Handle login logic (e.g., API request)
-    //       console.log('Login attempt:', this.username, this.password);
-    //       // Redirect or show success message
-    //       this.$router.push('/home'); // Example of redirecting after login
-    //     },
-    //   },
-    // };
+//       try {
+//         const response = await DataService.login(data);  // Call login API
+
+//         // Check if the response contains data
+//         if (response.data && response.data.data) {
+//           const userData = response.data.data;
+//           const customerAccountId = response.data.customer_account_id;
+          
+          
+//           // Store the token and customer data (including customer_account_id) in sessionStorage
+//           sessionStorage.setItem('uid', userData.token);  // Store the user token
+          
+          
+//           sessionStorage.setItem('udata', JSON.stringify({
+//             ...userData,  // Spread the user data
+//             customer_account_id: customerAccountId // Add the customer_account_id
+//           }));
+
+//           // Log success and redirect to home or another page
+//           console.log("Login successful");
+//           router.push({ name: 'Home' });  // Or redirect to the desired route
+//         } else {
+//           console.error('Login failed: Invalid response data');
+//           alert('Login failed: Invalid credentials or server error');
+//         }
+//       } catch (error) {
+//         // Catch any errors during login
+//         console.error('Error during login:', error);
+//         alert('An error occurred during login. Please try again.');
+//       }
+//     }
+//   }
+// };
+
+
+
+  import DataService from "../services/DataService";
+  import router from '@/router';
+  export default {
+      name: "login",
+      data() {
+        return {
+          formData: {
+            email: "",
+            password: "",
+          },
+        };
+      },
+      methods: {
+        login() {
+          var data = {
+            email: this.formData.email,
+            password: this.formData.password
+          };
+          DataService.login(data)
+          .then(response => {
+            console.log(response.data.data.token)
+            if(response.data.data.token){
+              sessionStorage.setItem('uid', response.data.data.token);
+              sessionStorage.setItem('udata', JSON.stringify(response.data.data.data));
+            }else
+              alert(response.data.error)
+              
+              router.push({ name: 'Home' });
+              window.location.href='/home';
+          })
+          .catch(e => {
+            console.log(e);
+          });
+        }
+      },
+    }
+
+      // methods: {
+//   async login() {
+    
+//     try {
+//       const response = await DataService.login(this.formData); // Assuming form contains email/password
+
+//       if (response.data && response.data.data) {
+//         // Assuming the backend sends back customer data and customer_account_id
+//         const userData = response.data.data;
+//         console.log( response.data.data);
+//         const customerAccountId = response.data.customer_account_id;
+       
+        
+//         // Store the customer data and customer_account_id in sessionStorage
+//         sessionStorage.setItem('udata', JSON.stringify({
+//           ...userData,
+//           customer_account_id: customerAccountId // Automatically add the customer_account_id here
+//         }));
+
+//         // Redirect or take other actions after successful login
+//         console.log("Login successful");
+//         // this.$router.push('/home'); // Or any page you want to navigate to
+//       } else {
+//         console.error('Login failed');
+//       }
+//     } catch (error) {
+//       console.error('Error during login:', error);
+//     }
+//   }
+// }
+
+//   };
+
+     
   </script>
   
   <style scoped>
