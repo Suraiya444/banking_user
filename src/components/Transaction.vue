@@ -27,6 +27,10 @@
                       <label for="trans_date">Transaction Date:</label>
                       <input type="date" v-model="form.trans_date" id="trans_date" required />
                     </div>
+                    <div>
+                      <label for="trans_date">Description</label>
+                      <input type="text" v-model="form.description" id="description" required />
+                    </div>
                     <button type="submit">Submit</button>
                   </form>
                 </div>
@@ -39,42 +43,38 @@
   </template>
   
   <script>
-  import DataService from "../services/DataService"; // Import Axios for HTTP requests
-  
+  import DataService from "../services/DataService";  
   export default {
-    data() {
-        console.log(JSON.parse(sessionStorage.getItem('udata')));
-      return {
-        user: JSON.parse(sessionStorage.getItem('udata')),
-        // Form data object to bind with the form inputs
-        form: {
-          trans_type: '',
-          amount: '',
-          trans_date: ''
-        }
-      };
-    },
+  data() {
+    
+    const userData = JSON.parse(sessionStorage.getItem('udata'));
+
+    return {
+      user: userData,
+      form: {
+        trans_type: '',
+        amount: '',
+        trans_date: '',
+        description: '',
+        customer_id: userData ? userData.id : '',            
+        customer_account_id: userData ? userData.customer_account_id : '',   
+      }
+    };
+  },
+
     methods: {
-      // Handle form submission
+       
       async submitForm() {
         try {
-            const customerData = await DataService.customer(); // Replace with actual API if needed
-            this.form.customer_id = customerData.id; 
-          // Send the form data to the backend via a POST request
-          const response = await DataService.customerTransaction(this.form);  // Pass the form data here
-          
-          // Handle the response after successful submission
+                    
+           const response = await DataService.customerTransaction(this.form);             
           console.log('Transaction saved:', response.data);
-  
-          // Optionally, reset the form or provide a success message
           this.resetForm();
         } catch (error) {
-          // Handle error (e.g., display an error message)
+           
           console.error('Error saving transaction:', error);
         }
       },
-  
-      // Reset the form after submission
       resetForm() {
         this.form.trans_type = '';
         this.form.amount = '';
@@ -85,6 +85,6 @@
   </script>
   
   <style scoped>
-  /* Add custom styles if needed */
+  
   </style>
   
