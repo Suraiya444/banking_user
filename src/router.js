@@ -14,10 +14,22 @@ const routes =  [
       component: () => import("./components/Deposit")
     },
     {
+      path: "/withdraw",
+      alias: "/withdraw",
+      name: "Withdraw",
+      component: () => import("./components/Withdraw")
+    },
+    {
       path: "/transaction",
       alias: "/transaction",
       name: "Transaction",
       component: () => import("./components/Transaction")
+    },
+    {
+      path: "/transaction_history",
+      alias: "/transaction_history",
+      name: "TransactionHistory",
+      component: () => import("./components/TransactionHistory")
     },
     {
       path: "/login",

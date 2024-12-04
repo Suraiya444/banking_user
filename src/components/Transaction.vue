@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="product-payment-inner-st">
+          <div class="product-payment-inner-st ">
             <ul id="myTabedu1" class="tab-review-design">
               <li class="active"><a href="#description">{{ user.name }}'s Transaction</a></li>
             </ul>
@@ -17,6 +17,12 @@
                       <option value="2">Withdraw</option>
                       <option value="3">Transfer In</option>
                       <option value="4">Transfer Out</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="customer_account_id">Account Number:</label>
+                    <select v-model="form.customer_account_id" id="customer_account_id" required >
+                      <option v-for="d in form.accountNo" :key="d.id" :value="d.id">{{ d.account_no }}</option>
                     </select>
                   </div>
                   <div>
@@ -46,21 +52,23 @@
 import DataService from "../services/DataService";  
 
 export default {
+  name: 'Transaction',
   data() {
     // Retrieve user data from sessionStorage
     const userData = JSON.parse(sessionStorage.getItem('udata'));
-    console.log(userData);  // Log the user data to the console (optional)
+    //console.log(userData?.customer_account);  // Log the user data to the console (optional)
 
     return {
       user: userData,  // Store user data
       form: {
+        accountNo:userData?.customer_account,
+        customer_account_id: '',
         trans_type: '',
         amount: '',
         trans_date: '',
         description: '',
         // Automatically populate the customer_id and customer_account_id from the logged-in user's data
-        customer_id: userData ? userData.id : '',            
-        customer_account_id: userData ? userData.customer_account_id : '',   
+        customer_id: userData ? userData.id : '', 
       }
     };
   },

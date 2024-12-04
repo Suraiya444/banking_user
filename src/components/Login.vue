@@ -95,7 +95,7 @@
           };
           DataService.login(data)
           .then(response => {
-            console.log(response.data.data.token)
+            console.log(response.data.data.data)
             if(response.data.data.token){
               sessionStorage.setItem('uid', response.data.data.token);
               sessionStorage.setItem('udata', JSON.stringify(response.data.data.data));
